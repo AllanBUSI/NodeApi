@@ -4,15 +4,14 @@
     "description": "",
     "scripts": {
         "start": "pm2 kill && pm2 start app.js --watch && pm2 logs",
+        "kill": "pm2 kill",
         "watch": "nodemon start",
         "test": "nodemon start",
         "build": "./build.sh"
     },
-    "author": [
-        {
-            "name": "Mike Christopher Sylvestre"
-        }
-    ],
+    "author": [{
+        "name": "Mike Christopher Sylvestre"
+    }],
     "license": "Lyknowledge",
     "keywords": [
         "API",

@@ -6,7 +6,7 @@ const mongoose = require('mongoose'),
 mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
 
-const connectionMongo = mongoose.connect(config.database.mongoose.uri, {
+const connectionMongo = mongoose.connect(config.database.mongodb.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -20,7 +20,7 @@ const connectionMysql = mysql.createConnection({
 connectionMysql.connect(function(err) {
     if (err) {
         logger.error('Error while attempting to connect to database MyQSL:');
-        logger.error(err);
+        // logger.error(err);
     }
 
     console.log('connected as id ' + connectionMysql.threadId);
