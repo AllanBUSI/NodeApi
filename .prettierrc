@@ -1,0 +1,11 @@
+{
+    "tabWidth": 4,
+    "useTabs": true,
+    "noSemi": false,
+    "printWidth": 90,
+    "rcVerbose": true,
+    "singleQuote": true,
+    "parser": "babylon",
+    "trailingComma": "all",
+    "jsxBracketSameLine": false,
+}
