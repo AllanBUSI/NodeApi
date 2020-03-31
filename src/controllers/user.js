@@ -1,8 +1,36 @@
 const User = require('../models/user'),
+    jwt = require('jsonwebtoken'),
+    config = require('../config/index'),
     filter = require('../middleware/filter');
 
-exports.login = (req, res) => {
-    res.status(200).send('OK');
+exports.login = async(req, res) => {
+    const data = Object.assign({ identifiant: '', password: '' }, req.body)
+
+    const where = (!filter.email(data.identifiant)) ? { username: data.identifiant } : { email: data.identifiant }
+    const user = await User.findOne(where);
+
+    if (user === null)
+        return res.status(409).json({
+            error: true,
+            message: 'Email/Password error'
+        })
+
+    const valid = user.verifyPasswordSync(data.password);
+    if (valid) {
+        return res.status(200).json({
+            error: false,
+            token: jwt.sign({
+                id: user.get('_id'),
+                exp: Math.floor(Date.now() / 1000) + (60 * 60) * 24 * 7,
+            }, config.keyToken)
+        })
+    } else {
+        return res.status(409).json({
+            error: true,
+            message: 'Email/Password error'
+        })
+
+    }
 }
 
 exports.register = async(req, res) => {
@@ -29,7 +57,7 @@ exports.register = async(req, res) => {
     }).catch((error) => {
         console.log(error);
     })
-    res.status(200).send('OK');
+    return res.status(200).send('OK');
 }
 
 exports.forgot_password = (req, res) => {

@@ -9,9 +9,11 @@
         "test": "nodemon start",
         "build": "./build.sh"
     },
-    "author": [{
-        "name": "Mike Christopher Sylvestre"
-    }],
+    "author": [
+        {
+            "name": "Mike Christopher Sylvestre"
+        }
+    ],
     "license": "Lyknowledge",
     "keywords": [
         "API",
@@ -32,6 +34,7 @@
         "express-jwt": "^5.3.1",
         "fs": "0.0.1-security",
         "grpc": "1.24.2",
+        "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.9.7",
         "mongoose-bcrypt": "^1.6.0",
         "mongoose-string-query": "^0.2.7",
